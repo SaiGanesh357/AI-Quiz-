@@ -1,8 +1,9 @@
-// ✅ frontend/src/services/api.js
+// frontend/src/services/api.js
 
+// 🔹 Set backend URL from environment (Render link)
 const BASE_URL = process.env.REACT_APP_BACKEND_URL || "https://ai-quiz-xy0u.onrender.com";
 
-// Generate quiz from Wikipedia article
+// 🔸 Function 1: Generate Quiz
 export async function generateQuiz(url) {
   const response = await fetch(`${BASE_URL}/api/generate`, {
     method: "POST",
@@ -17,12 +18,12 @@ export async function generateQuiz(url) {
   return response.json();
 }
 
-// ✅ Exported as getHistory — fixes your build issue
+// 🔸 Function 2: Get Quiz History  ✅ (the missing one)
 export async function getHistory() {
   const response = await fetch(`${BASE_URL}/api/history`);
 
   if (!response.ok) {
-    throw new Error("Failed to fetch quiz history");
+    throw new Error("Failed to fetch history");
   }
 
   return response.json();
