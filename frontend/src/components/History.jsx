@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getHistory, getQuiz } from "../services/api";
+import { fetchHistory as getHistory,getQuiz } from "../services/api";
 import QuizModal from "./QuizModal";
 
 export default function History(){
