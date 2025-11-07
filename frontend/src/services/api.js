@@ -1,30 +1,14 @@
-// frontend/src/services/api.js
+import axios from "axios";
 
-// 🔹 Set backend URL from environment (Render link)
-const BASE_URL = process.env.REACT_APP_BACKEND_URL || "https://ai-quiz-xy0u.onrender.com";
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:8000/api";
 
-// 🔸 Function 1: Generate Quiz
-export async function generateQuiz(url) {
-  const response = await fetch(`${BASE_URL}/api/generate`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ url }),
-  });
+const api = axios.create({
+  baseURL: API_BASE,
+  timeout: 60000,
+});
 
-  if (!response.ok) {
-    throw new Error("Failed to generate quiz");
-  }
+export const generateQuiz = (url) => api.post("/generate", { url }).then(r => r.data);
+export const getHistory = () => api.get("/history").then(r => r.data);
+export const getQuiz = (id) => api.get(`/quiz/${id}`).then(r => r.data);
 
-  return response.json();
-}
-
-// 🔸 Function 2: Get Quiz History  ✅ (the missing one)
-export async function getHistory() {
-  const response = await fetch(`${BASE_URL}/api/history`);
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch history");
-  }
-
-  return response.json();
-}
+export default api;
