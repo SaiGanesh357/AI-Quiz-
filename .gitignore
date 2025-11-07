@@ -1,0 +1,17 @@
+# Node dependencies
+frontend/node_modules/
+
+# Python cache
+backend/__pycache__/
+*.pyc
+
+# Build and environment
+frontend/build/
+.env
+*.env
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
